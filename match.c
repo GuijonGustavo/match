@@ -12,7 +12,9 @@ void peaks();
 /*Count of lines in file*/
 int lines_input = 15;
 
-int matrix[15][3];
+#define MAX 2000
+
+float matrix[MAX][2];
 
 /* Datafile to be open */
 FILE *datafilewrite;
@@ -26,9 +28,9 @@ int main() {
 }
 
 void peaks(){
-  for (int i = 0; i < 15; i++) {
+  for (int i = 0; i < MAX; i++) {
   if(matrix[i][1] > matrix[i-1][1] && matrix[i][1] > matrix[i+1][1] ){
-    fprintf(datafilewrite, "%d %d\n", matrix[i][0], matrix[i][1]); 
+    fprintf(datafilewrite, "%f %f\n", matrix[i][0], matrix[i][1]); 
     }
   }
 
@@ -37,11 +39,11 @@ void peaks(){
 	
 void loop()
 {
-int  tobs, Lth;
+float Lth;
 
-for(int m = 0; m < 15; m++){
-    fscanf(datafileread, "%d  %d", &tobs, &Lth);
-    matrix[m][0] = tobs ;
+for(int m = 1; m < MAX; m++){
+    fscanf(datafileread, "%f", &Lth);
+    matrix[m][0] = m;
     matrix[m][1] = Lth ;
   }
 }
@@ -53,7 +55,7 @@ void openfiles()
 
   datafilewrite = fopen("match.dat", "w");
 
-  datafileread = fopen("data", "r");
+  datafileread = fopen("data1.dat", "r");
 
   if (datafilewrite == NULL )
     {
