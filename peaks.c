@@ -53,9 +53,9 @@ for(int m = 1; m < MAX; m++){
 void openfiles()
 {
 
-  datafilewrite = fopen("match.dat", "w");
+  datafilewrite = fopen("mrk501-gamma-peaks.dat", "w");
 
-  datafileread = fopen("data1.dat", "r");
+  datafileread = fopen("mrk501-gamma-rp.dat", "r");
 
   if (datafilewrite == NULL )
     {
